@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Donate | Light of Life Initiative</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script>
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Wallet number copied: " + text);
+      }).catch(err => console.error("Failed to copy: ", err));
+    }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-800 relative">
+
+  <!-- Header -->
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-3">
+      <div class="flex items-center gap-2">
+        <img src="logo.jpg" alt="Logo" class="h-10 w-10 rounded-full shadow-md">
+        <span class="text-lg sm:text-xl font-bold text-blue-700">Light of Life Initiative</span>
+      </div>
+      <nav class="hidden md:flex gap-6 items-center">
+        <a href="index.html" class="hover:text-blue-400">Home</a>
+        <a href="aboutus.html" class="nav-link text-gray-700 hover:text-blue-600">About</a>
+        <a href="#objectives" class="nav-link text-gray-700 hover:text-blue-600">Objectives</a>
+        <a href="contact.html" class="nav-link text-gray-700 hover:text-blue-600">Contact</a>
+        <a href="get-involved.html"class="nav-link text-gray-700 hover:text-blue-600">Get Involved</a>
+        </nav>
+     
+  </header>
+
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-r from-blue-700 to-blue-600 text-white text-center py-28 mt-16">
+    <h1 class="text-4xl md:text-5xl font-extrabold mb-4 animate-pulse">Support Our Mission</h1>
+    <p class="text-lg md:text-xl max-w-2xl mx-auto">Your donation helps us bring hope and light to families in need.</p>
+  </section>
+
+  <!-- Donation Options -->
+  <section class="container mx-auto px-4 py-16 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+
+    <!-- Bank Transfer -->
+    <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-2xl transition transform hover:-translate-y-2">
+      <h2 class="text-2xl font-bold text-blue-700 mb-4">Bank Transfer</h2>
+      <label for="bankSelect" class="block mb-2 font-semibold text-gray-700">Select Your Bank:</label>
+      <select id="bankSelect" onchange="showBankDetails()" 
+              class="w-full border rounded px-4 py-3 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <option value="">-- Choose Bank --</option>
+        <option value="cbe">Commercial Bank of Ethiopia (CBE)</option>
+        <option value="dashen">Dashen Bank</option>
+        <option value="awash">Awash Bank</option>
+        <option value="abyssinia">Bank of Abyssinia</option>
+        <option value="wegagen">Wegagen Bank</option>
+        <option value="zemen">Zemen Bank</option>
+        <option value="hibret">Hibret Bank</option>
+        <option value="coop">Cooperative Bank of Oromia</option>
+        <option value="lion">Lion International Bank</option>
+        <option value="berhan">Berhan Bank</option>
+      </select>
+      <div id="bankDetails" class="mt-4 text-gray-700 hidden border-t pt-4 space-y-1"></div>
+    </div>
+
+    <!-- Telebirr -->
+    <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-2xl transition transform hover:-translate-y-2 text-center">
+      <h3 class="text-xl font-semibold text-blue-700 mb-4">Donate via Telebirr</h3>
+      <p class="text-gray-700 mb-2">Wallet Number: <span class="font-bold">+251911123456</span></p>
+      <button onclick="copyToClipboard('+251911123456')" 
+              class="bg-blue-700 text-white px-6 py-2 rounded shadow hover:bg-blue-800 transition transform hover:scale-105">
+        Copy Number
+      </button>
+      <img src="telebirr-qr.png" alt="Telebirr QR" class="mx-auto my-4 h-40 rounded-lg shadow-lg">
+      <p class="text-gray-600 text-sm">Scan QR code or copy number to pay via Telebirr app.</p>
+    </div>
+
+    <!-- M-PESA -->
+    <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-2xl transition transform hover:-translate-y-2 text-center">
+      <h3 class="text-xl font-semibold text-blue-700 mb-4">Donate via M-PESA</h3>
+      <p class="text-gray-700 mb-2">Wallet Number: <span class="font-bold">+251922654321</span></p>
+      <button onclick="copyToClipboard('+251922654321')" 
+              class="bg-blue-700 text-white px-6 py-2 rounded shadow hover:bg-blue-800 transition transform hover:scale-105">
+        Copy Number
+      </button>
+      <img src="mpesa-qr.png" alt="M-PESA QR" class="mx-auto my-4 h-40 rounded-lg shadow-lg">
+      <p class="text-gray-600 text-sm">Scan QR code or copy number to pay via M-PESA app.</p>
+    </div>
+
+    <!-- Chapa Online -->
+    <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-2xl transition transform hover:-translate-y-2 text-center">
+      <h2 class="text-2xl font-bold text-blue-700 mb-4">Donate Online</h2>
+      <p class="text-gray-700 mb-4">Make a secure donation through Chapa (Ethiopia).</p>
+      <a href="https://dashboard.chapa.co/" 
+         target="_blank"
+         class="block w-full text-center bg-blue-700 text-white py-3 rounded-xl font-bold hover:bg-blue-800 transition transform hover:scale-105">
+         Donate Online with Chapa
+      </a>
+    </div>
+
+  </section>
+
+  <script>
+    function showBankDetails() {
+      const bank = document.getElementById("bankSelect").value;
+      const detailsDiv = document.getElementById("bankDetails");
+      const banks = {
+        cbe: { name:"Commercial Bank of Ethiopia", account:"1234567890", branch:"Addis Ababa Main Branch", swift:"CBETETAA" },
+        dashen: { name:"Dashen Bank", account:"2233445566", branch:"HQ Branch, Addis Ababa", swift:"DASHETAA" },
+        awash: { name:"Awash Bank", account:"3344556677", branch:"Bole Branch, Addis Ababa", swift:"AWINETAA" },
+        abyssinia: { name:"Bank of Abyssinia", account:"4455667788", branch:"Piazza Branch, Addis Ababa", swift:"ABYSETAA" },
+        wegagen: { name:"Wegagen Bank", account:"5566778899", branch:"HQ Branch, Addis Ababa", swift:"WEGAETAA" },
+        zemen: { name:"Zemen Bank", account:"6677889900", branch:"HQ Branch, Addis Ababa", swift:"ZEMEETAA" },
+        hibret: { name:"Hibret Bank", account:"7788990011", branch:"HQ Branch, Addis Ababa", swift:"HIBEETAA" },
+        coop: { name:"Cooperative Bank of Oromia", account:"8899001122", branch:"HQ Branch, Addis Ababa", swift:"CPORETAA" },
+        lion: { name:"Lion International Bank", account:"9900112233", branch:"HQ Branch, Addis Ababa", swift:"LIONETAA" },
+        berhan: { name:"Berhan Bank", account:"1122334455", branch:"HQ Branch, Addis Ababa", swift:"BERHETAA" }
+      };
+      if(bank && banks[bank]) {
+        const b = banks[bank];
+        detailsDiv.innerHTML = `
+          <p><span class="font-semibold">Bank:</span> ${b.name}</p>
+          <p><span class="font-semibold">Account Name:</span> Light of Life Initiative</p>
+          <p><span class="font-semibold">Account Number:</span> ${b.account}</p>
+          <p><span class="font-semibold">Branch:</span> ${b.branch}</p>
+          <p><span class="font-semibold">SWIFT Code:</span> ${b.swift}</p>
+          <p class="text-sm text-gray-500 mt-2">For international donors, please use the SWIFT Code.</p>
+        `;
+        detailsDiv.classList.remove("hidden");
+      } else {
+        detailsDiv.classList.add("hidden");
+      }
+    }
+  </script>
+  
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-gray-300 py-6 text-center">
+    <p>&copy; 2025 Light of Life Initiative. All rights reserved.</p>
+  </footer>
+
+  
+
+</body>
+</html>
